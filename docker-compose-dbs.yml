@@ -1,0 +1,31 @@
+networks:
+  fastapi_network:
+    external: 
+      true
+
+volumes:
+  fastapi_volume:
+    external:
+      true
+
+services:
+  db:
+    image: postgres:17
+    networks:
+      - fastapi_network
+    environment:
+      - POSTGRES_PASSWORD=supersecret
+    volumes:
+      - fastapi_volume:/var/lib/postgresql/data:rw
+    ports:
+      - "5002:5432"
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    networks:
+      - fastapi_network
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=blaise@blaise.com
+      - PGADMIN_DEFAULT_PASSWORD=supersecret
+    ports:
+      - "8080:80"
