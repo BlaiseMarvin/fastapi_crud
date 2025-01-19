@@ -19,7 +19,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 ALGORITHM = "HS256"
 
 # these are 30 minutes
-ACCESS_TOKEN_EXPIRE_MINUTES=30
+ACCESS_TOKEN_EXPIRE_MINUTES=1
 
 def create_access_token(data: dict):
     to_encode = data.copy()

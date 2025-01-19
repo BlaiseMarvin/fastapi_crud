@@ -15,7 +15,7 @@ router = APIRouter(
 )
 
 @router.get("/")
-def get_posts():
+def get_posts(user_id: int = Depends(oauth2.get_current_user)):
     cursor.execute("""SELECT * FROM  post""")
     posts = cursor.fetchall()
     return {"data": posts}
